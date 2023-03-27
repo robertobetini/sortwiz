@@ -6,17 +6,17 @@ from .errors import InvalidOrderError
 class BubbleSort(BaseSort):
     @classmethod
     def sort_asc(self, items: list, in_place: bool = False) -> SortResult:
-        '''
+        f'''
         Applies a bubble sort in ascending order to the given list.
 
         Parameters
         ----------
-            items - A list with items to sort.
-            in_place - Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
+            `items` - A list with items to sort.
+            `in_place` - Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
 
         Returns
         -------
-            The sorted list of items in ascending order.
+            The `SortResult` with the list of items in ascending order.
         '''
 
         return self.sort(items, in_place, 1)
@@ -28,12 +28,12 @@ class BubbleSort(BaseSort):
 
         Parameters
         ----------
-            items - A list with items to sort.
-            in_place - Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
+            `items` - A list with items to sort.
+            `in_place` - Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
 
         Returns
         -------
-            The sorted list of items in descending order.
+            The `SortResult` with the list of items in descending order.
         '''
 
         return self.sort(items, in_place, -1)
@@ -45,15 +45,13 @@ class BubbleSort(BaseSort):
 
         Parameters
         ----------
-            items - A list with items to sort.
-            in_place - Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
-            order - 
-                ascending -> 1
-                descending -> -1
+            `items` - A list with items to sort.
+            `in_place` - Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
+            `order` - 1 (ascending) or -1 (descending)
 
         Returns
         -------
-            The sorted list of items.
+            The `SortResult` with the list of items.
         '''
         self.validate(items)
 

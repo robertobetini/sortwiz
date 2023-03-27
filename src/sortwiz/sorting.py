@@ -11,15 +11,13 @@ class SortWizard:
 
         Parameters
         ----------
-            items: A list with items to sort.
-            in_place: Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
-            order: 
-                ascending -> 1
-                descending -> -1
+            `items` - A list with items to sort.
+            `in_place` - Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
+            `order` - 1 (ascending) or -1 (descending)
 
         Returns
         -------
-            The sorted list of items.
+            The `SortResult` with the list of items.
         '''
 
         return SortWizard._bubble_sort.sort(items, in_place=in_place, order=order)

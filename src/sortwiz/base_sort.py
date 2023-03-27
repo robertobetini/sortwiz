@@ -32,15 +32,15 @@ class BaseSort:
     @staticmethod
     def validate(items) -> None:
         '''
-        Validates if 'items' is of type list.
+        Validates if `items` is of type list.
 
         Returns
         -------
-            None.
+            `None`.
 
         Raises
         ------
-            TypeError if items isn't a list.
+            `TypeError` if items isn't a list.
         '''
         
         items_type = type(items)
