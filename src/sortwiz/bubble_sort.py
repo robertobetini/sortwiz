@@ -52,6 +52,7 @@ class BubbleSort(BaseSort):
         -------
             The `SortResult` with the list of items.
         '''
+        
         self.validate(items)
 
         start_time = datetime.now()

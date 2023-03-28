@@ -44,5 +44,37 @@ class TestBaseSort(unittest.TestCase):
         self.assertEqual(item_to_be_swapped, items[another_item_to_be_swapped_index])
         self.assertEqual(another_item_to_be_swapped, items[item_to_be_swapped_index])
 
+    def reverse_test(self):
+        # Arrange
+        items = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        expected = [9, 8, 7, 6, 5, 4, 3, 2, 1]
 
-    
+        # Act
+        BaseSort.reverse(items)
+
+        # Assert
+        self.assertListEqual(expected, items)
+
+    def test_reverse_swaps(self):
+        # Arrange
+        items = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        sort_result = SortResult(None, 0, 0, 0)
+        expected = 4
+
+        # Act
+        BaseSort.reverse(items, sort_result)
+
+        # Assert
+        self.assertEqual(expected, sort_result.swaps)
+
+    def test_reverse_writes(self):
+        # Arrange
+        items = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        sort_result = SortResult(None, 0, 0, 0)
+        expected = 8
+
+        # Act
+        BaseSort.reverse(items, sort_result)
+
+        # Assert
+        self.assertEqual(expected, sort_result.writes)

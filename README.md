@@ -21,7 +21,7 @@ Algorithms implemented so far:
 
 ### Unstable
 
-- [ ] Quicksort
+- [X] Quicksort
 - [ ] Introsort
 - [ ] Heapsort
 - [ ] Selection Sort
