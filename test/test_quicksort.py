@@ -1,10 +1,10 @@
 import unittest
 
-from sortwiz.bubble_sort import BubbleSort
+from sortwiz.quicksort import Quicksort
 from sortwiz.base_sort import SortResult
 
-class TestBubbleSort(unittest.TestCase):
-    sut = BubbleSort()
+class TestQuicksort(unittest.TestCase):
+    sut = Quicksort()
 
     def test_items_type(self):
         # Arrange
@@ -100,7 +100,7 @@ class TestBubbleSort(unittest.TestCase):
         # Arrange
         items = [4, 3, 1, 2]
 
-        expected = 5
+        expected = 3
 
         # Act
         result = self.sut.sort(items, False)
@@ -114,7 +114,7 @@ class TestBubbleSort(unittest.TestCase):
         # Arrange
         items = [4, 3, 1, 2]
 
-        expected = 10
+        expected = 6
 
         # Act
         result = self.sut.sort(items, False)
