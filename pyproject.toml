@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sortwiz"
-version = "0.1.2"
+version = "0.2.0"
 description = "Apply sorting algorithms to python lists."
 readme = "README.md"
 authors = [{ name = "Roberto Betini Junior", email = "betini.roberto@gmail.com" }]

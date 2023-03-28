@@ -48,7 +48,15 @@ class BaseSort:
             raise TypeError(f"Parameter 'items' expected be a list. Given: {items_type}.")
     
     @staticmethod
-    def swap(items: list, i: int, j: int, sorting_result: SortResult) -> None:
+    def swap(items: list, i: int, j: int, sort_result: SortResult = None) -> None:
         items[i], items[j] = items[j], items[i]
-        sorting_result.writes += 2
-        sorting_result.swaps += 1
+        if sort_result != None:
+            sort_result.writes += 2
+            sort_result.swaps += 1
+
+    @staticmethod
+    def reverse(items: list, sort_result: SortResult = None) -> None:
+        half_way_index = int(len(items) / 2)
+        for i in range(half_way_index):
+            mirrored_index = -(i + 1)
+            BaseSort.swap(items, i, mirrored_index, sort_result)

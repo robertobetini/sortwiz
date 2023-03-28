@@ -2,11 +2,11 @@ from datetime import datetime
 
 from .base_sort import BaseSort, SortResult
 
-class BubbleSort(BaseSort):
+class Quicksort(BaseSort):
     @classmethod
     def sort_asc(self, items: list, in_place: bool = False) -> SortResult:
         '''
-        Applies a bubble sort in ascending order to `items`.
+        Applies a quicksort in ascending order to `items`.
 
         Parameters
         ----------
@@ -23,7 +23,7 @@ class BubbleSort(BaseSort):
     @classmethod
     def sort_desc(self, items: list, in_place: bool = False) -> SortResult:
         '''
-        Applies a bubble sort in descending order to `items`.
+        Applies a quicksort in descending order to `items`.
 
         Parameters
         ----------
@@ -32,7 +32,7 @@ class BubbleSort(BaseSort):
 
         Returns
         -------
-            The `SortResult` with the list of items in descending order.
+            The `SortResult` with the list of items in ascending order.
         '''
 
         return self.sort(items, in_place, True)
@@ -40,7 +40,7 @@ class BubbleSort(BaseSort):
     @classmethod
     def sort(self, items: list, in_place: bool = False, reverse: bool = False) -> SortResult:
         '''
-        Applies a bubble sort to `items`.
+        Applies a quicksort to `items`.
 
         Parameters
         ----------
@@ -52,27 +52,45 @@ class BubbleSort(BaseSort):
         -------
             The `SortResult` with the list of items.
         '''
+
         self.validate(items)
 
         start_time = datetime.now()
 
-        swapped = True
         sorted_list = items if in_place else list(items)
         sort_result = SortResult(sorted_list, 0, 0, 0)
 
-        while swapped:
-            swapped = False
-
-            for i in range(len(sorted_list) - 1):
-                if sorted_list[i] > sorted_list[i + 1]:
-                    self.swap(sorted_list, i, i + 1, sort_result)
-                    swapped = True
+        start = 0
+        end = len(sorted_list)
+        self.__quicksort(sorted_list, start, end, sort_result)
 
         end_time = datetime.now()
 
-        sort_result.time = end_time - start_time
+        sort_result.time = start_time - end_time
 
         if reverse:
-            BaseSort.reverse(sort_result.value)
+            BaseSort.reverse(sort_result.value, sort_result)
 
         return sort_result
+    
+    @classmethod
+    def __quicksort(self, items: list, start: int, end: int, sort_result: SortResult) -> None:
+        if start < end:
+            partition = self.__partition(items, start, end, sort_result)
+            self.__quicksort(items, start, partition, sort_result)
+            self.__quicksort(items, partition + 1, end, sort_result)
+
+    @classmethod
+    def __partition(self, items: list, start: int, end: int, sort_result: SortResult) -> int:
+        pivot_index = end - 1
+        pivot = items[pivot_index]
+
+        for i in range(start, end):
+            if items[i] < pivot:
+                BaseSort.swap(items, start, i, sort_result)
+                start += 1
+
+        if pivot < items[start]:
+            BaseSort.swap(items, start, pivot_index, sort_result)
+
+        return start
