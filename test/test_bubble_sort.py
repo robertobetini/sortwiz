@@ -13,22 +13,13 @@ class TestBubbleSort(unittest.TestCase):
 
         # Act & Assert
         with self.assertRaises(TypeError):
-            self.sut.sort(items, True, 1)
+            self.sut.sort(items, True)
 
         with self.assertRaises(TypeError):
             self.sut.sort_asc(items, True)
 
         with self.assertRaises(TypeError):
             self.sut.sort_asc(items, True)
-
-    def test_order_value(self):
-        # Arrange
-        items = [1, 5, 1, 2]
-        order = 0
-
-        # Act & Assert
-        with self.assertRaises(InvalidOrderError):
-            self.sut.sort(items, True, order)
 
     def test_in_place_True_returns_same_list_reference(self):
         # Arrange
@@ -39,7 +30,7 @@ class TestBubbleSort(unittest.TestCase):
         items_desc = list(items)
 
         # Act
-        result = self.sut.sort(items, in_place, 1)
+        result = self.sut.sort(items, in_place)
         result_asc = self.sut.sort_asc(items_asc, in_place)
         result_desc = self.sut.sort_desc(items_desc, in_place)
 
@@ -57,7 +48,7 @@ class TestBubbleSort(unittest.TestCase):
         items_desc = list(items)
 
         # Act
-        result = self.sut.sort(items, in_place, 1)
+        result = self.sut.sort(items, in_place)
         result_asc = self.sut.sort_asc(items, in_place)
         result_desc = self.sut.sort_desc(items, in_place)
 
@@ -71,7 +62,7 @@ class TestBubbleSort(unittest.TestCase):
         empty_items = []
 
         # Act
-        result = self.sut.sort(empty_items, True, 1)
+        result = self.sut.sort(empty_items, True)
 
         # Assert
         self.assertEqual(0, result.swaps)
@@ -80,15 +71,13 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_items_sort_asc(self):
         # Arrange
-        order = 1
-
         items = [8, 5, 6, 1, 0, -10, 6]
 
         expected = list(items)
         expected.sort()
 
         # Act
-        result = self.sut.sort(items, False, order)
+        result = self.sut.sort(items, False)
         result_asc = self.sut.sort_asc(items, False)
 
         # Arrange
@@ -97,15 +86,13 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_items_sort_desc(self):
         # Arrange
-        order = -1
-
         items = [8, 5, 6, 1, 0, -10, 6]
 
         expected = list(items)
         expected.sort(reverse=True)
 
         # Act
-        result = self.sut.sort(items, False, order)
+        result = self.sut.sort(items, False, True)
         result_desc = self.sut.sort_desc(items, False)
 
         # Arrange
@@ -114,14 +101,12 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_items_swaps_asc(self):
         # Arrange
-        order = 1
-
         items = [4, 3, 1, 2]
 
         expected = 5
 
         # Act
-        result = self.sut.sort(items, False, order)
+        result = self.sut.sort(items, False)
         result_asc = self.sut.sort_asc(items, False)
 
         # Arrange
@@ -130,14 +115,12 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_items_swaps_desc(self):
         # Arrange
-        order = -1
-
         items = [4, 3, 1, 2]
 
         expected = 1
 
         # Act
-        result = self.sut.sort(items, False, order)
+        result = self.sut.sort(items, False, True)
         result_desc = self.sut.sort_desc(items, False)
 
         # Arrange
@@ -146,14 +129,12 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_items_writes_asc(self):
         # Arrange
-        order = 1
-
         items = [4, 3, 1, 2]
 
         expected = 10
 
         # Act
-        result = self.sut.sort(items, False, order)
+        result = self.sut.sort(items, False)
         result_asc = self.sut.sort_asc(items, False)
 
         # Arrange
@@ -162,14 +143,12 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_items_writes_desc(self):
         # Arrange
-        order = -1
-
         items = [4, 3, 1, 2]
 
         expected = 2
 
         # Act
-        result = self.sut.sort(items, False, order)
+        result = self.sut.sort(items, False, True)
         result_desc = self.sut.sort_desc(items, False)
 
         # Arrange
@@ -178,7 +157,7 @@ class TestBubbleSort(unittest.TestCase):
     
     def test_result_type(self):
         # Act
-        result = self.sut.sort([], False, 1)
+        result = self.sut.sort([], False)
         result_asc = self.sut.sort_asc([], False)
         result_desc = self.sut.sort_desc([], False)
 
@@ -186,4 +165,3 @@ class TestBubbleSort(unittest.TestCase):
         self.assertIsInstance(result, SortResult)
         self.assertIsInstance(result_asc, SortResult)
         self.assertIsInstance(result_desc, SortResult)
-        

@@ -19,7 +19,7 @@ class BubbleSort(BaseSort):
             The `SortResult` with the list of items in ascending order.
         '''
 
-        return self.sort(items, in_place, 1)
+        return self.sort(items, in_place, False)
     
     @classmethod
     def sort_desc(self, items: list, in_place: bool = False) -> SortResult:
@@ -36,10 +36,10 @@ class BubbleSort(BaseSort):
             The `SortResult` with the list of items in descending order.
         '''
 
-        return self.sort(items, in_place, -1)
+        return self.sort(items, in_place, True)
     
     @classmethod
-    def sort(self, items: list, in_place: bool = False, order: int = 1) -> SortResult:
+    def sort(self, items: list, in_place: bool = False, reverse: bool = False) -> SortResult:
         '''
         Applies a bubble sort to the given list.
 
@@ -47,7 +47,7 @@ class BubbleSort(BaseSort):
         ----------
             `items` - A list with items to sort.
             `in_place` - Whether to apply the sort into the given list or not. If True, modifies the given list, if False, not.
-            `order` - 1 (ascending) or -1 (descending)
+            `reverse` - `True` for descending, `False` for ascending.
 
         Returns
         -------
@@ -65,7 +65,7 @@ class BubbleSort(BaseSort):
             swapped = False
 
             for i in range(len(sorted_list) - 1):
-                if self.__apply_order_rule(sorted_list, i, order):
+                if self.__apply_order_rule(sorted_list, i, reverse):
                     self.swap(sorted_list, i, i + 1, sort_result)
                     swapped = True
 
@@ -76,10 +76,9 @@ class BubbleSort(BaseSort):
         return sort_result
     
     @classmethod
-    def __apply_order_rule(self, items: list, i: int, order: int):
-        if order == 1:
-            return items[i] > items[i + 1]
-        elif order == -1:
+    def __apply_order_rule(self, items: list, i: int, reverse: bool):
+        if reverse:
             return items[i] < items[i + 1]
-        else:
-            raise InvalidOrderError(order)
+        
+        return items[i] > items[i + 1]
+        

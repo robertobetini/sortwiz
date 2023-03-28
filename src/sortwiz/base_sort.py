@@ -26,7 +26,7 @@ class BaseSort:
         raise NotImplementedError()
     
     @classmethod
-    def sort(self, items: list, in_place: bool = False, order: int = 1) -> SortResult:
+    def sort(self, items: list, in_place: bool = False, reverse: bool = False) -> SortResult:
         raise NotImplementedError()
     
     @staticmethod
