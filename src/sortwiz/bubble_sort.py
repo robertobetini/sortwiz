@@ -65,7 +65,7 @@ class BubbleSort(BaseSort):
             swapped = False
 
             for i in range(len(sorted_list) - 1):
-                if sorted_list[i] > sorted_list[i + 1]:
+                if self.__apply_order_rule(sorted_list, i, reverse, sort_result):
                     self.swap(sorted_list, i, i + 1, sort_result)
                     swapped = True
 
@@ -73,7 +73,11 @@ class BubbleSort(BaseSort):
 
         sort_result.time = end_time - start_time
 
-        if reverse:
-            BaseSort.reverse(sort_result.value)
-
         return sort_result
+
+    @classmethod
+    def __apply_order_rule(self, items: list, i: int, reverse: bool, sort_result: SortResult) -> bool:
+        if reverse:
+            return items[i] < items[i + 1]
+        
+        return items[i] > items[i + 1]
